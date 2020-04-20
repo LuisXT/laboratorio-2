@@ -47,25 +47,25 @@ void dibujarPasto(double x5, double y5, double x6, double y6, double x7, double 
 }
 
 //Metodo para dibujar las Nubes
-void drawClouds (double x1, double y1)
+void drawClouds (double x1, double y1, double Size = 1)
 {
     //parte central de la nube
     glPushMatrix();
-    glTranslated(x1,y1,0);
+    glTranslated(x1,y1,(1 * Size));
     glColor3f(1,1,1);
-    glutSolidSphere(1,10,10);
+    glutSolidSphere((1 * Size),60,60);
     glPopMatrix();
     //parte izquierda de la nube
     glPushMatrix();
-    glTranslated(x1-1,y1,0);
+    glTranslated((x1 - Size),y1,(1 * Size));
     glColor3f(1,1,1);
-    glutSolidSphere(1,10,10);
+    glutSolidSphere((1 * Size),60,60);
     glPopMatrix();
     //parte derecha de la nube
     glPushMatrix();
-    glTranslated(x1+1,y1,0);
+    glTranslated((x1 + Size),y1,(1 * Size));
     glColor3f(1,1,1);
-    glutSolidSphere(1,10,10);
+    glutSolidSphere((1 * Size),60,60);
     glPopMatrix();
 }
 
@@ -148,12 +148,12 @@ void draw (void)
     arbol(10.0,-25.0,15.0,-25.0,15.0,-20.0,10.0,-20.0,  5.0,-20.0,20.0,-20.0,12.5,-15.0,    5.0,-15.0,20.0,-15.0,12.5,-10.0,    5.0,-10.0,20.0,-10.0,12.5,-5.0);
 
     //Clouds
-    drawClouds(-30,30);
-    drawClouds(-20,25);
-    drawClouds(-10,33);
-    drawClouds(15,30);
-    drawClouds(25,26);
-    drawClouds(0,20);
+    drawClouds(-30,30,3);
+    drawClouds(-20,25,2);
+    drawClouds(-10,33,0.5);
+    drawClouds(15,30,4);
+    drawClouds(25,26,6);
+    drawClouds(0,20,1);
 
 
 
