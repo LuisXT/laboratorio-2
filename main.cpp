@@ -79,40 +79,29 @@ void Sol (double x, double y)
     glPopMatrix();
 }
 
-void arbol (double x20, double y20, double x21, double y21, double x22, double y22, double x23, double y23,     double x24, double y24, double x25, double y25, double x26, double y26,     double x27, double y27, double x28, double y28, double x29, double y29,     double x30, double y30,double x31, double y31,double x32, double y32)
-{
+void triangulo(double x,double y, double Size){
+    glBegin(GL_TRIANGLES); // draw in triangle strips
+           glColor3f(0.5f, 1.0f, 0.5f); // sets color to verde.
+           glVertex2f((x - (10*Size)),y); // esquina inferior izquierda
+           glVertex2f((x + (10*Size)),y); // esquina inferior derecha
+           glVertex2f(x,(y + (5*Size))); // esquina superior
+    glEnd();
+}
+
+void arbol (double x, double y, double Size = 1)
+{       // 0,0
         //tronco
     glBegin(GL_QUADS); // draw in triangle strips
            glColor3f(1.0f, 0.2f, 0.0f); // sets color to verde.
-           glVertex2f(x20,y20); // esquina inferior izquierda
-           glVertex2f(x21,y21); // esquina inferior derecha
-           glVertex2f(x22,y22); // esquina superior derecha
-           glVertex2f(x23,y23); // esquina superior izquierda
+           glVertex2f(x - (2.5 * Size),(y)); // esquina inferior izquierda
+           glVertex2f((x + (2.5 * Size)),(y)); // esquina inferior derecha
+           glVertex2f((x + (2.5 * Size)),(y + (5 * Size))); // esquina superior derecha
+           glVertex2f((x - (2.5 * Size)),(y + (5 * Size))); // esquina superior izquierda
     glEnd();
 
-        //hoja superior
-    glBegin(GL_TRIANGLES); // draw in triangle strips
-           glColor3f(0.5f, 1.0f, 0.5f); // sets color to verde.
-           glVertex2f(x20-5,y22); // esquina inferior izquierda
-           glVertex2f(x21+5,y25); // esquina inferior derecha
-           glVertex2f((((x21-x20)/2)+ x20),y26); // esquina superior
-    glEnd();
-
-        //hoja medio
-    glBegin(GL_TRIANGLES); // draw in triangle strips
-           glColor3f(0.5f, 1.0f, 0.5f); // sets color to verde.
-           glVertex2f(x27,y27); // esquina inferior izquierda
-           glVertex2f(x28,y28); // esquina inferior derecha
-           glVertex2f(x29,y29); // esquina superior
-    glEnd();
-
-        //hoja inferior
-    glBegin(GL_TRIANGLES); // draw in triangle strips
-           glColor3f(0.5f, 1.0f, 0.5f); // sets color to verde.
-           glVertex2f(x30,y30); // esquina inferior izquierda
-           glVertex2f(x31,y31); // esquina inferior derecha
-           glVertex2f(x32,y32); // esquina superior
-    glEnd();
+    triangulo(x, (y+(4*Size)),Size);
+    triangulo(x, (y+(8*Size)),Size);
+    triangulo(x, (y+(12*Size)),Size);
     glutSwapBuffers();
 }
 
@@ -145,7 +134,9 @@ void draw (void)
 
 
     //dibujar arbol
-    arbol(10.0,-25.0,15.0,-25.0,15.0,-20.0,10.0,-20.0,  5.0,-20.0,20.0,-20.0,12.5,-15.0,    5.0,-15.0,20.0,-15.0,12.5,-10.0,    5.0,-10.0,20.0,-10.0,12.5,-5.0);
+    arbol(0,-30,0.4);
+    arbol(10,-30,0.8);
+    arbol(20,-30);
 
     //Clouds
     drawClouds(-30,30,3);
