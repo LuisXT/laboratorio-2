@@ -10,29 +10,40 @@ void iniciarProyeccion()
     gluOrtho2D(-40,40,-40,40);
 }
 
-void dibujarEdificio(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double c1, double c2, double c3)
+//dibujarEdificio(-30.0,-30.0,-5.0,-30.0,-30.0,10.0,-5.0,10.0, 0.5f, 1.0f, 0.5f);
+//(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double c1, double c2, double c3)
+
+//dibujarVentana(-27.0,0.0,-7.0,0.0,-7.0,8.0,-27.0,8.0,1.0f, 0.0f , 1.0f);
+void dibujarVentana(double x, double y, double Size = 1)
 {
-       glBegin(GL_TRIANGLE_STRIP); // draw in triangle strips
-               glColor3f(c1, c2, c3); // sets color to cyan.
-               glVertex2f(x1,y1); // esquina inferior izquierda
-               glVertex2f(x2,y2); // esquina superior izquierda
-               glVertex2f(x3,y3); // esquina inferior derecha
-               glVertex2f(x4,y4); // esquina superior derecha
+       glBegin(GL_QUADS); // draw in triangle strips
+               glColor3f(1, 1, 1); // sets color to verde.
+               glVertex2f((x - (8*Size)),(y)); // esquina inferior izquierda
+               glVertex2f((x + (8*Size)),(y)); // esquina inferior derecha
+               glVertex2f((x + (8*Size)),(y + (5*Size))); // esquina superior izquierda
+               glVertex2f((x - (8*Size)),(y + (5*Size))); // esquina superior derecha
        glEnd();
        glutSwapBuffers();
 }
 
-void dibujarVentana(double x9, double y9, double x10, double y10, double x11, double y11, double x12, double y12, double c4,double c5, double c6)
+void dibujarEdificio(double x, double y, double Size = 1)
 {
        glBegin(GL_QUADS); // draw in triangle strips
-               glColor3f(c4, c5, c6); // sets color to verde.
-               glVertex2f(x9,y9); // esquina inferior izquierda
-               glVertex2f(x10,y10); // esquina inferior derecha
-               glVertex2f(x11,y11); // esquina superior izquierda
-               glVertex2f(x12,y12); // esquina superior derecha
+               glColor3f(0.3,0.3,0.3); // sets color to cyan.
+               glVertex2f((x - (10*Size)),(y)); // esquina inferior izquierda
+               glVertex2f((x + (10*Size)),(y)); // esquina inferior derecha
+               glVertex2f((x + (10*Size)),(y + (30*Size))); // esquina superior izquierda
+               glVertex2f((x - (10*Size)),(y + (30*Size))); // esquina superior derecha
        glEnd();
+
+       dibujarVentana(x,(y + (10*Size)),Size);
+       dibujarVentana(x,(y + (16*Size)),Size);
+       dibujarVentana(x,(y + (22*Size)),Size);
        glutSwapBuffers();
 }
+
+
+
 
 void dibujarPasto(double x5, double y5, double x6, double y6, double x7, double y7, double x8, double y8)
 {
@@ -118,19 +129,11 @@ void draw (void)
     dibujarPasto(-40.0,-40.0,40.0,-40.0,40.0,0.0,-40.0,0.0);
 
     //Dibujar Edificios
-    dibujarEdificio(-30.0,-30.0,-5.0,-30.0,-30.0,10.0,-5.0,10.0, 0.5f, 1.0f, 0.5f);
-    dibujarEdificio(10.0,-15.0,30.0,-15.0,10.0,20.0,30.0,20.0, 1.0f, 0.0f , 1.0f);
-
+    dibujarEdificio(0,-10,0.5);
+    dibujarEdificio(-20,-20,1);
     //Dibujar Ventanas
         //edificio #1
-    dibujarVentana(-27.0,0.0,-7.0,0.0,-7.0,8.0,-27.0,8.0,1.0f, 0.0f , 1.0f);
-    dibujarVentana(-27.0,-10.0,-7.0,-10.0,-7.0,-2.0,-27.0,-2.0,1.0f, 0.0f, 1.0f);
-    dibujarVentana(-27.0,-20.0,-7.0,-20.0,-7.0,-12.0,-27.0,-12.0,1.0f, 0.0f, 1.0f);
 
-        //edificio #2
-    dibujarVentana(13.0,12.0,28.0,12.0,28.0,18.0,13.0,18.0,0.5f, 1.0f, 0.5f);
-    dibujarVentana(13.0,4.0,28.0,4.0,28.0,10.0,13.0,10.0,0.5f, 1.0f, 0.5f);
-    dibujarVentana(13.0,-4.0,28.0,-4.0,28.0,2.0,13.0,2.0,0.5f, 1.0f, 0.5f);
 
 
     //dibujar arbol
